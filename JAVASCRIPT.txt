@@ -1,0 +1,128 @@
+ JAVA lenguaje de programacion del lado del back-end, funciona con declaraciones
+
+JAVASCRIPT lenguaje de programacion del lado del front-end
+
+se usan para escribir en entornos distintos
+
+CURSO JAVASCRIPT (PRIMERAS 4 CLASES)
+
+DATOS: 
+VARIABLES:es un espacio reservado en la memoria
+OBJETOS:
+ARRAYS:
+FUNCION:
+
+
+
+
+
+ALGORITMOS en javascript: Son una lista de pasos para obtener un resultado o resolver un problema. 
+
+
+
+CLASE 1: Sintaxis y Codigo
+como escribir javascript? 
+- poner la etiqueta script dentro del html
+- crear un archivo javascript y vincularlo
+
+VARIABLES 
+Javascript tiene tipado dinamico, eso quiere decir que las variables no tienen un tipo de dato asociado.
+
+Formas de declararlas 
+- var (no es recomendable usar)
+- let ...  (Puede recibir multiples asignaciones)
+- const ... (no puede cambiar su valor inicial. EJ: el numero PI, tiene cierto valor y no se puede cambiar)
+
+Let y Const : no se pueden repetir, no se puede declarar 2 variables con el mismo nombre
+
+ COMO TENER INTERACCION CON EL USUARIO?
+
+prompt: mostrara un cuadro de dialogo
+consola: es para visualizar el resultado de una operacion
+alert: nos permite mostrar un mensaje a los usuarios
+
+
+
+CLASE 2 (CONTROL DE FLUJOS)
+objetivos
+entender que es un condicional y cómo nos permite tomar decisiones
+comprender cómo javascript evalua un valor como verdadero o falso
+identificar operadores logicos de comparacion y comprender su aplicacion en condicionales
+
+CONDICIONALES
+
+estructura IF (si el resultado es true entra al if y lee el codigo entre lñlaves, caso contrario ignora el codigo entre llaves)
+
+Operadores de igualdad
+Operador de igualdad debil (Loose equality): solamente compara valores y usa la coercion de tipos para concretar una operacion.
+
+Operadores de igualdad estricta (strict equality): compara valores y ademas tipos de datos.
+
+menor que, mayor que, menor o igual que, mayor o igual que
+ 
+SEGUNDA PARTE DE LA CLASE 2 (OPERADORES LOGICOS)
+
+ IGUAL, DISTINTO, MENOR, MENOR O IGUAL, MAYOR, MAYOR O IGUAL, AND, OR Y NOT
+
+
+CLASE 3 (Ciclo e interaciones)
+
+ Objetivos de la clase:
+
+Comprender que es un ciclo o bucle y como nos permite repetir operaciones similares facilmente.
+Conocer que tipos de ciclos podemos emplear y cuales son sus diferencias.
+Analizar como combinar operadores logicos, ciclos y funciones para resolver cada problema.
+
+ * 1era parte de la clase *
+
+Tipos de ciclos: Ciclos por conteo, repite un bloque de codigo un numero de veces especifica. Estructura FOR. Ciclos condicionales: Repiten un bloque de codigo mientras la condicion evaluada es verdadera. Estructura WHILE y DO..WHILE.
+
+
+Estructura FOR: for (desde, hasta, actualizacion)
+sentencia break y continue
+
+ * segunda parte de la clase *
+
+WHILE: se termina cuando se deja de cumplir cierta condicion.
+
+DO...WHILE: a diferencia de while el codigo se ejecuta al menos una vez porque la condicion esta al final y no al principio como en while.
+
+SWITCH: Sirve para evaluar casos.
+
+CLASE 4 (Funciones) 
+ 
+ Objetivos de la clase:
+
+Concepto de funcion y comprender sus ventajas.
+Identificar parametro de entrada y salida de una funcion.
+Conocer que es el scope y conocer las variables globales y variables locales de javascript.
+Definir y diferenciar funcion anonima y funcion flecha.
+
+ * Primera parte de la clase *
+
+Funciones: te ayudan a escribir codigo mas legible, una funcion es un conjunto de instrucciones que se agrupan para realizar una tarea concreta. Son reutilizables a lo largo del codigo. 
+Algunas ventajas son: evitar instrucciones duplicadas (Principio DRY(dont repeat you)), Soluciona problemas complejos usando tareas sencillas (Pincipio KISS(keep is simple, stupind)), Focaliza tareas prioritarias para el programa (Principio YAGNI()), Aporta ordenamiento y entendimiento al código y aporta facilidad y rapidez para hacer modificaciones.
+
+Las funciones se declaran a traves de la palabra FUNCTION. El nombre debe estar en minuscula y sin espacios seguidos de los parentesis. El contenido de la funcion se escribe entre llaves. El nombre de la funcion no se puede repetir.    
+Una vez declarada la funcion luego podemos hacer un "llamado a la funcion", donde hagamos el llamado se interpretaran las instrucciones definidas en esa funcion.
+
+Las funciones tienen parametros, estos son variables que se declaran dentro de la funcion. Se puede acceder a su valor llamando a la funcion o usando return.
+
+
+ * Segunda parte de la clase *
+
+	CONCEPTO SCOPE
+Scope o ámbito es el lugar donde una variable existe o esta definida, para javascript existe el ambito local y global. Una variable global esta definida por fuera de cualquier funcion  o bloque, en cambio, una local esta definida por dentro de una funcion o bloque.
+
+EJ:   
+
+	FUNCIONES ANONIMAS
+
+No tienen nombre, se utilizan como parametros o asignada a una variable
+
+	FUNCIONES FLECHA
+
+anonimas de sintaxis simplificada, tambien tienen el return implicito,  
+
+
+
