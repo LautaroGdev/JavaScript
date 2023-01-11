@@ -88,6 +88,7 @@ const realizarCompra = () => {
     let combo = 0;
     let precio = 0;
     let cantidadEntradas = 0;
+    let totalProductos = 0;
     let cantidadTotal = 0;
     let seguirComprando = false;
     let totalCompra = 0;
@@ -103,28 +104,26 @@ const realizarCompra = () => {
         console.log(cantidadEntradasValidada)
         
         switch (cantidadEntradas) {
-            case "1":
-                precio = 800;
+            case 1:
+                precioEntrada = 800;
                 break;
-            case "2":
-                precio = 1600;
+            case 2:
+                precioEntrada = 1600;
                 break;
-            case "3":
-                precio = 2400;
+            case 3:
+                precioEntrada = 2400;
                 break;
-            case "4": 
-                precio = 3200;
+            case 4: 
+                precioEntrada = 3200;
                 break;
-            case "5":
-                precio = 4000;
+            case 5:
+                precioEntrada = 4000;
                 break;
             default: 
                 alert("Escribe el numero de entradas que deseas comprar. Puedes sacar hasta 5 por compra.");
                 break;
         }
 
-
-        
         combo = prompt("Seleccioná qué combo preferis: familiar (4 bebidas / 2 baldes de pochoclos: $4000), duo (2 bebidas / 1 balde de pochoclos: $2200), individual (1 bebida / 1 balde jr de pochoclos: $1300");
         
         const comboValidado = validarCombo (combo)
@@ -132,23 +131,29 @@ const realizarCompra = () => {
 
         switch (combo) {
             case "familiar":
-                precio = 4000;
+                precioCombo = 4000;
                 break;
             case "duo":
-                precio = 2200;
+                precioCombo = 2200;
                 break;
             case "individual":
-                precio = 1300
+                precioCombo = 1300;
                 break;
             default:
                 alert("Intentalo de nuevo escribiendo el nombre del combo que preferis.");
                 combo = 0;
                 precio = 0;
+                break;
         }
-        
 
-        seguirComprando = confirm("¿Quieres confirmar la compra?")
+        totalCompra += precioCombo + precioEntrada;
+
+        alert("El total de su compra es de: $"+totalCompra);
+        
+        seguirComprando = confirm("¿Quieres confirmar la compra?");
     } while (seguirComprando)
+    
+    alert("Que disfrutes la función!")
 }
 
 
@@ -164,7 +169,7 @@ const validarCantidadEntradas = (cantidadEntradas) => {
 
 
 const validarCombo = (combo) => {
-        while ((combo != 'familiar') || (combo != 'duo') || (combo != 'individual')) {
+        while ((combo != "familiar") && (combo != "duo") && (combo != "individual")) {
             alert("Ingresa el nombre del combo que queres comprar como lo muestra en el mensaje por favor")
             combo = prompt("Seleccioná qué combo preferis: familiar (4 bebidas / 2 baldes de pochoclos: $4000), regular (2 bebidas / 1 balde de pochoclos: $2200), individual (1 bebida / 1 balde jr de pochoclos: $1300.")           
     } 
