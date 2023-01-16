@@ -80,100 +80,117 @@ let resultado = calcularOperacion (numeroA, numeroB, operacion)
 alert("el resultado de la operacion es: " +resultado) */
 
 
-/* ENTREGA UNO */
-
-const realizarCompra = () => {
-
-    let pelicula = "";
-    let combo = 0;
-    let precio = 0;
-    let cantidadEntradas = 0;
-    let totalProductos = 0;
-    let cantidadTotal = 0;
-    let seguirComprando = false;
-    let totalCompra = 0;
 
 
+/*   */
+
+// Array para el carrito de compras
+const carrito = []
+
+// Ordenar productos de menor a mayor
+const ordenarMenorMayor = () => {
+    productos.sort((a, b) => a.precio - b.precio)
+    mostrarListaOrdenada()
+};
+
+// Ordenar productos de mayor a menor
+const ordenarMayorMenor = () => {
+    productos.sort((a, b) => b.precio - a.precio)
+    mostrarListaOrdenada()
+};
+
+const mostrarListaOrdenada = () => {
+    const listaDeProductos = productos.map(producto => {
+        return "- "+producto.nombre+" $"+producto.precio
+    })
+    alert("Lista de precios:"+"\n\n"+listaDeProductos.join("\n"))
+    comprarProductos(listaDeProductos)
+};
+
+const comprarProductos = (listaDeProductos) => {
+    let productoNombre = ""
+    let productoCantidad = 0
+    let otroProducto = false
 
     do {
-        pelicula = confirm("¿Queres ver el estreno de Avatar 2?");
-        cantidadEntradas = parseInt(prompt("Escribe el número de entradas que deseas comprar. Puedes sacar hasta 5 entradas."));
-        
-        
-        const cantidadEntradasValidada = validarCantidadEntradas(cantidadEntradas)
-        console.log(cantidadEntradasValidada)
-        
-        switch (cantidadEntradas) {
-            case 1:
-                precioEntrada = 800;
-                break;
-            case 2:
-                precioEntrada = 1600;
-                break;
-            case 3:
-                precioEntrada = 2400;
-                break;
-            case 4: 
-                precioEntrada = 3200;
-                break;
-            case 5:
-                precioEntrada = 4000;
-                break;
-            default: 
-                alert("Escribe el numero de entradas que deseas comprar. Puedes sacar hasta 5 por compra.");
-                break;
+        productoNombre = prompt("¿Qué combo desea comprar?"+"\n\n"+listaDeProductos.join("\n"))
+        productoCantidad = parseInt(prompt('¿Cuántos queres comprar?'))
+
+        const producto = productos.find(producto => producto.nombre.toLowerCase() === productoNombre.toLowerCase())
+
+        if (producto) {
+            agregarAlCarrito(producto, producto.id, productoCantidad)
+        } else {
+            alert("El producto no es valido")
         }
 
-        combo = prompt("Seleccioná qué combo preferis: familiar (4 bebidas / 2 baldes de pochoclos: $4000), duo (2 bebidas / 1 balde de pochoclos: $2200), individual (1 bebida / 1 balde jr de pochoclos: $1300");
-        
-        const comboValidado = validarCombo (combo)
-        console.log(comboValidado)
+        otroProducto = confirm("Quiere agregar otro combo?")
+    } while (otroProducto);
 
-        switch (combo) {
-            case "familiar":
-                precioCombo = 4000;
-                break;
-            case "duo":
-                precioCombo = 2200;
-                break;
-            case "individual":
-                precioCombo = 1300;
-                break;
-            default:
-                alert("Intentalo de nuevo escribiendo el nombre del combo que preferis.");
-                combo = 0;
-                precio = 0;
-                break;
+    confirmarCompra()
+};
+
+const agregarAlCarrito = (producto, productoId, productoCantidad) => {
+    const productoRepetido = carrito.find(producto => producto.id === productoId)
+    if (!productoRepetido) {
+        producto.cantidad += productoCantidad
+        carrito.push(producto)
+    } else {
+        productoRepetido.cantidad += productoCantidad
+    }
+};
+
+const eliminarProductoCarrito = (nombreProductoAEliminar) => {
+    carrito.forEach((producto, index) => {
+        if (producto.nombre.toLowerCase() === nombreProductoAEliminar.toLowerCase()) {
+            if (producto.cantidad > 1) {
+                producto.cantidad--
+            } else {
+                carrito.splice(index, 1)
+            }
         }
+    })
+    confirmarCompra()
+};
 
-        totalCompra += precioCombo + precioEntrada;
+const confirmarCompra = () => {
+    const listaProductos = carrito.map(producto => {
+        return "- "+producto.nombre+" | Cantidad: "+producto.cantidad
+    })
 
-        alert("El total de su compra es de: $"+totalCompra);
-        
-        seguirComprando = confirm("¿Quieres confirmar la compra?");
-    } while (seguirComprando)
-    
-    alert("Que disfrutes la función!")
-}
+    const isCheckout = confirm("Checkout: "
+        +"\n\n"+listaProductos.join("\n")
+        +"\n\nPara continuar presione 'Aceptar' sino 'Cancelar' para eliminar un combo del carrito"
+    )
+
+    if (isCheckout) {
+        finalizarCompra(listaProductos)
+    } else {
+        const nombreProductoAEliminar = prompt("Ingrese el nombre del combo a eliminar:")
+        eliminarProductoCarrito(nombreProductoAEliminar)
+    }
+};
+
+const finalizarCompra = (listaProductos) => {
+    const cantidadTotal = carrito.reduce((acc, item) => acc + item.cantidad, 0)
+    const precioTotal = carrito.reduce((acc, item) => acc + (item.cantidad * item.precio), 0)
+    alert("Detalle de su compra: "
+        +"\n\n"+listaProductos.join("\n")
+        +"\n\nTotal de productos: "+cantidadTotal
+        +"\n\nEl total de la compra es: "+precioTotal
+        +"\n\nGracias por realizar su compra!"
+    )
+};
+
+const comprar = () => {
+    const productosBaratos = confirm("Bienvenido al Candy! ¿Queres ordenar los combos del mas barato al mas caro?")
+
+    if (productosBaratos) {
+        ordenarMenorMayor()
+    } else {
+        ordenarMayorMenor()
+    }
+};
 
 
-
-const validarCantidadEntradas = (cantidadEntradas) => {
-        while (Number.isNaN(cantidadEntradas) || (cantidadEntradas === 0) || (cantidadEntradas > 5)) {
-        alert("Recorda que podes sacar de 1 a 5 entradas inclusive por compra.")
-            
-        cantidadEntradas = parseInt(prompt("Escribe el número de entradas que deseas comprar. Puedes sacar hasta 5 entradas."))
-    } 
-        return cantidadEntradas;    
-    };
-
-
-const validarCombo = (combo) => {
-        while ((combo != "familiar") && (combo != "duo") && (combo != "individual")) {
-            alert("Ingresa el nombre del combo que queres comprar como lo muestra en el mensaje por favor")
-            combo = prompt("Seleccioná qué combo preferis: familiar (4 bebidas / 2 baldes de pochoclos: $4000), regular (2 bebidas / 1 balde de pochoclos: $2200), individual (1 bebida / 1 balde jr de pochoclos: $1300.")           
-    } 
-        return combo;      
-    };
-
-realizarCompra();
+comprar()
